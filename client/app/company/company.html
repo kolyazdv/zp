@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+
+</header>
+<input type="text" ng-model="test"> <button ng-click="checkData()">Check</button>
+{{test}}
+<div class="container">
+
+
+  <table class="table table-bordered table-striped table-hover">
+    <tr>
+      <td>Name</td>
+      <td>Info</td>
+      <td>Deal</td>
+      <td>Address</td>
+    </tr>
+    <tr ng-repeat="company in companys">
+      <td><a ui-sref="view({id: company._id})">{{company.name}}</a></td>
+      <td>{{company.info}}</td>
+      <td>{{company.deal}}</td>
+      <td>{{company.address}}</td>
+    </tr>
+  </table>
+</div>
+
+<footer class="footer">
+
+</footer>
