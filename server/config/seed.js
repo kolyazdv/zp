@@ -55,7 +55,7 @@ Company.find({}).remove(function () {
       name: 'name5',
       info: 'info5',
       deal: 'deal5',
-      address: 'address5'it
+      address: 'address5',
       color: 'color5',
       holding: 'holding5'
     }
