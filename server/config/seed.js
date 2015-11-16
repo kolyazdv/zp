@@ -8,7 +8,12 @@
 var Thing = require('../api/thing/thing.model');
 var Company = require('../api/company/company.model');
 var Region = require('../api/region/region.model');
+var District = require('../api/district/district.model');
 var User = require('../api/user/user.model');
+
+console.log('Starting parsers...');
+var parser = require('../components/parsers/import');
+parser();
 
 Thing.find({}).remove(function () {
   Thing.create({
@@ -67,11 +72,11 @@ Region.find({}).remove(function () {
   Region.create(
     {
       name: 'Днепропетровская',
-      info: 'info'
+      info: ''
     },
     {
       name: 'Донецкая',
-      info: 'info3'
+      info: ''
     },
     {
       name: 'Винницкая',
@@ -82,72 +87,112 @@ Region.find({}).remove(function () {
       info: ''
     },
     {
-      name: '	Днепропетровская',
+      name: 'Днепропетровская',
       info: ''
     },
     {
-      name: '	Донецкая',
+      name: 'Донецкая',
       info: ''
     },
     {
-      name: '	Житомирская',
+      name: 'Житомирская',
       info: ''
     },
     {
-      name: '	Закарпатская',
+      name: 'Закарпатская',
       info: ''
     },
     {
-      name: '	Запорожская',
+      name: 'Ивано-Франковская',
       info: ''
     },
     {
-      name: '	Ивано-Франковская',
+      name: 'Киевская',
       info: ''
     },
     {
-      name: '	Киевская',
+      name: 'Кировоградская',
       info: ''
     },
     {
-      name: '	Кировоградская',
+      name: 'Луганская',
       info: ''
     },
     {
-      name: '	Луганская',
+      name: 'Львовская',
       info: ''
     },
     {
-      name: '	Львовская',
+      name: 'Николаевская',
       info: ''
     },
     {
-      name: '	Николаевская 	', info: ''},
+      name: 'Одесская',
+      info: ''
+    },
     {
-      name: '	Одесская 	', info: ''},
+      name: 'Полтавская',
+      info: ''
+    },
     {
-      name: '	Полтавская 	', info: ''},
+      name: 'Ровненская',
+      info: ''
+    },
     {
-      name: '	Ровненская 	', info: ''},
+      name: 'Сумская',
+      info: ''
+    },
     {
-      name: '	Сумская 	', info: ''},
+      name: 'Тернопольская',
+      info: ''
+    },
     {
-      name: '	Тернопольская 	', info: ''},
+      name: 'Харьковская',
+      info: ''
+    },
     {
-      name: '	Харьковская 	', info: ''},
+      name: 'Херсонская',
+      info: ''
+    },
     {
-      name: '	Херсонская 	', info: ''},
+      name: 'Хмельницкая',
+      info: ''
+    },
     {
-      name: '	Хмельницкая 	', info: ''},
+      name: 'Черкасская',
+      info: ''
+    },
     {
-      name: '	Черкасская 	', info: ''},
+      name: 'Черниговская',
+      info: ''
+    },
     {
-      name: '	Черниговская 	', info: ''},
+      name: '	Черновицкая 	',
+      info: ''
+    },
     {
-      name: '	Черновицкая 	', info: ''},
-    {
-      name: '	Автономная Республика Крым	', info: ''}
+      name: '	Автономная Республика Крым	',
+      info: ''
+    }
   );
+});
+
+Region.create({
+  name: '	Запорожская',
+  info: ''
+}, function(err, newRegion){
+  District.find().remove(function(){
+    District.create({
+      name: 'Test',
+      info: 'Info qTest',
+      _region: newRegion._id
+    }, function(err, district){
+  //    console.log(err, district);
+      newRegion.districts.push(district._id);
+      newRegion.save();
+    });
+  });
+
 });
 
 User.find({}).remove(function () {

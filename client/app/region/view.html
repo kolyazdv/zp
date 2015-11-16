@@ -1,0 +1,28 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <table class="table table-striped">
+    <tbody><tr>
+      <td>Область</td>
+      <td>{{region.name}}</td>
+    </tr>
+    <tr>
+      <td>тест</td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>Описание</td>
+      <td>
+      </td>
+    </tr>
+
+
+    <form>
+      <input type="text" ng-model="region.name">
+      <input type="text" ng-model="region.info">
+      <input type="button" value="Save" ng-click="saveForm(region)">
+    </form>
+
+    </tbody></table>
+</div>

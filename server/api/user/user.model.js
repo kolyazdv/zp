@@ -13,8 +13,8 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  salt: String,
-  regions: [{ type: ObjectId, ref: 'RegionSchema' }]
+  salt: String//,
+  //regions: [{ type: ObjectId, ref: 'RegionSchema' }]
 });
 
 /**

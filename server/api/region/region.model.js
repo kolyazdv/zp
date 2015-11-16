@@ -5,7 +5,23 @@ var mongoose = require('mongoose'),
 
 var RegionSchema = new Schema({
   name: String,
-  info: String
-});
+  info: String,
+  districts: [{ type:  Schema.Types.ObjectId, ref: 'District' }]
+},
+  {
+    toObject: {
+    virtuals: true
+  },
+  toJSON: {
+    virtuals: true
+  }
+  }
+);
+
+RegionSchema
+  .virtual('districtsCount')
+  .get(function() {
+    return this.districts.length;
+  });
 
 module.exports = mongoose.model('Region', RegionSchema);
