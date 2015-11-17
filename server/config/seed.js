@@ -11,9 +11,7 @@ var Region = require('../api/region/region.model');
 var District = require('../api/district/district.model');
 var User = require('../api/user/user.model');
 
-console.log('Starting parsers...');
-var parser = require('../components/parsers/import');
-parser();
+
 
 Thing.find({}).remove(function () {
   Thing.create({
@@ -176,24 +174,31 @@ Region.find({}).remove(function () {
     }
   );
 });
-
+console.log("--- 1---");
+District.find().remove();
 Region.create({
   name: '	Запорожская',
   info: ''
 }, function(err, newRegion){
   District.find().remove(function(){
     District.create({
-      name: 'Test',
-      info: 'Info qTest',
+      name: 'Акимовский',
+      info: 'test',
       _region: newRegion._id
     }, function(err, district){
-  //    console.log(err, district);
+    //  console.log(err, district);
       newRegion.districts.push(district._id);
       newRegion.save();
     });
   });
 
 });
+
+
+console.log('Starting parsers...');
+var parser = require('../components/parsers/import');
+parser();
+
 
 User.find({}).remove(function () {
   User.create({

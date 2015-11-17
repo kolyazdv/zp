@@ -5,7 +5,7 @@ angular.module('zpApp')
     $stateProvider
       .state('company', {
         url: '/company',
-        templateUrl: 'app/company/region.html',
+        templateUrl: 'app/company/holding.html',
         controller: 'CompanyCtrl',
         authenticate: true
       })
