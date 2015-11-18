@@ -10,7 +10,9 @@ var CompanySchema = new Schema({
   deal: String,
   address: String,
   color: String,
-  _holding: {type: Schema.Types.ObjectId, ref: 'Holding'}
-});
+  _holding: {type: Schema.Types.ObjectId, ref: 'Holding'},
+  _district: {type: Schema.Types.ObjectId, ref: 'District'}
+},
+  { skipVersioning: { dontVersionMe: true }});
 
 module.exports = mongoose.model('Company', CompanySchema);

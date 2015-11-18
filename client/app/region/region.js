@@ -6,7 +6,13 @@ angular.module('zpApp')
       .state('region', {
         url: '/region',
         templateUrl: 'app/region/region.html',
-        controller: 'CompanyCtrl',
+        controller: 'RegionCtrl',
+        authenticate: true
+      })
+      .state('newRegion', {
+        url: '/region/new',
+        templateUrl: 'app/region/new.html',
+        controller: 'NewRegionCtrl',
         authenticate: true
       })
       .state('regionView', {

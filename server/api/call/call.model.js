@@ -1,10 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    Stuff = require('../stuff/stuff.model.js'),
-    Region = require('../region/region.model.js'),
-    User = require('../user/user.model.js');
+    Schema = mongoose.Schema;
 
 var CallSchema = new Schema({
   date: Date,

@@ -1,8 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    Region = require('../region/region.model.js');
+    Schema = mongoose.Schema;
 
 var DistrictSchema = new Schema({
   name: String,

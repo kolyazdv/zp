@@ -9,7 +9,7 @@ angular.module('zpApp')
         controller: 'HoldingCtrl',
         authenticate: true
       })
-      .state('view', {
+      .state('viewHolding', {
         url: '/holding/:id',
         templateUrl: 'app/holding/view.html',
         controller: 'HoldingViewCtrl',

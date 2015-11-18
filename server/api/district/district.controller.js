@@ -15,7 +15,7 @@ var Region = require('../region/region.model.js');
 
 // Get list of Districts
 exports.index = function(req, res) { console.log('index');
-  District.find().populate('_region').exec(function (err, districts) {
+  District.find().populate('_region _companies').exec(function (err, districts) {
         return res.json(districts);
       }
   );

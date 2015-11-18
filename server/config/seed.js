@@ -175,29 +175,33 @@ Region.find({}).remove(function () {
   );
 });
 console.log("--- 1---");
-District.find().remove();
-Region.create({
-  name: '	Запорожская',
-  info: ''
-}, function(err, newRegion){
-  District.find().remove(function(){
-    District.create({
-      name: 'Акимовский',
-      info: 'test',
-      _region: newRegion._id
-    }, function(err, district){
-    //  console.log(err, district);
-      newRegion.districts.push(district._id);
-      newRegion.save();
-    });
-  });
 
+//Region.create({
+//  name: '	Запорожская',
+//  info: ''
+//}, function(err, newRegion){
+//  District.find().remove(function(){
+//    District.create({
+//      name: 'Акимовский',
+//      info: 'test',
+//      _region: newRegion._id
+//    }, function(err, district){
+//    //  console.log(err, district);
+//      newRegion.districts.push(district._id);
+//      newRegion.save();
+//    });
+//  });
+//
+//});
+
+District.find().remove(function(){
+  Company.find().remove(function(){
+    console.log('Starting parsers...');
+    var parser = require('../components/parsers/import');
+    parser();
+  });
 });
 
-
-console.log('Starting parsers...');
-var parser = require('../components/parsers/import');
-parser();
 
 
 User.find({}).remove(function () {
