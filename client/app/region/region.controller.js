@@ -22,21 +22,22 @@ angular.module('zpApp')
 
     $scope.removeRegion = function(region){
       swal({
-          title: "Are you sure?",
-          text: "You will not be able to recover this imaginary file!",
+          title: "Точно удалить?",
+          text: "Удаляем область и все районы и компании которые входят в него!",
           type: "warning",
           showCancelButton: true,
           confirmButtonColor: "#DD6B55",
-          confirmButtonText: "Yes, delete it!",
+          confirmButtonText: "Да, удалить!",
+          cancelButtonText: "Нет, не удалять!",
           closeOnConfirm: false
         },
         function(){
           $http.delete('/api/region/'+region._id).then(function(){
-            swal("Deleted!", "Регион "+region.name+" был успешно удален.", "success");
+            swal("Удалили", "Регион/Область "+region.name+" был успешно удален(а).", "success");
             $scope.loadData();
           });
         });
-      console.log(region);
+    //  console.log(region);
     };
 
 

@@ -15,7 +15,7 @@ var Region = require('../region/region.model.js');
 
 // Get list of Districts
 exports.index = function(req, res) { console.log('index');
-  District.find().populate('_region _companies').exec(function (err, districts) {
+  District.find({_region: req.params.regionID}).populate('_region _companies').exec(function (err, districts) {
         return res.json(districts);
       }
   );
@@ -31,10 +31,20 @@ exports.show = function(req, res) {
 };
 
 // Creates a new district in the DB.
-exports.create = function(req, res) {
+exports.create = function(req, res) { console.log(req.body);
   District.create(req.body, function(err, district) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(district);
+
+    Region.findById(district._region, function(err, region){
+      if(err) { return handleError(res, err); }
+      if(!region){
+        return res.status(404).send('Not Found');
+      }
+      region.districts.push(district._id);
+      region.save(function(err, region){
+        return res.status(201).json(district);
+      })
+    });
   });
 };
 

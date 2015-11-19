@@ -12,7 +12,7 @@
     <tr ng-repeat="region in regions">
       <td>
         <a class="btn btn-primary btn-sm" ui-sref="districtList({regionID: region._id})">Просмотреть</a>
-        <button class="btn btn-danger" ng-click="removeRegion(region)">Remove</button>
+        <button class="btn btn-danger btn-sm" ng-click="removeRegion(region)">Удалить</button>
       </td>
       <td><a ui-sref="regionView({id: region._id})">{{region.name}}</a></td>
       <td>{{region.districtsCount}}</td>

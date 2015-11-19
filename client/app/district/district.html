@@ -1,0 +1,27 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+
+
+  <table class="table table-bordered table-striped table-hover">
+    <tr>
+      <td>Дествие</td>
+      <td>Название района</td>
+      <td>Предприятия</td>
+    </tr>
+    <tr ng-repeat="district in districts">
+      <td>
+        <a class="btn btn-primary btn-sm" ui-sref="companyList({districtID: district._id})">Просмотреть</a>
+        <button class="btn btn-danger btn-sm" ng-click="removeDistrict(district)">Удалить</button>
+      </td>
+      <td><a ui-sref="districtView({id: district._id})">{{district.name}}</a></td>
+      <td>{{district.companiesCount}}</td>
+    </tr>
+  </table>
+  <!--<a class="btn btn-success" ui-sref="addDistrict({})">Добавить область</a>-->
+  <a class="btn btn-success" ui-sref="newDistrict({regionID: regionID})">Добавить район</a>
+</div>
+
+<footer class="footer">
+
+</footer>

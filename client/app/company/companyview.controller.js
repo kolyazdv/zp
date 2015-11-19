@@ -9,7 +9,7 @@ angular.module('zpApp')
       info: '',
       address: ''
     };
-    $http.get('/api/company/'+$stateParams.id).success(function(company) {
+    $http.get('/api/company/view/'+$stateParams.id).success(function(company) {
       $scope.company = company;
     });
 

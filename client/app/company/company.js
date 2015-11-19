@@ -9,6 +9,12 @@ angular.module('zpApp')
         controller: 'CompanyCtrl',
         authenticate: true
       })
+      .state('companyList', {
+        url: '/company/list/:districtID',
+        templateUrl: 'app/company/company.html',
+        controller: 'CompanyCtrl',
+        authenticate: true
+      })
       .state('newCompany', {
         url: '/company/new/:districtID',
         templateUrl: 'app/company/new.html',

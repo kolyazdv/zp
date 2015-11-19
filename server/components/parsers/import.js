@@ -3,6 +3,7 @@ var fs = require('fs');
 var _ = require('lodash');
 var Companies = require('../../api/company/company.model');
 var District = require('../../api/district/district.model');
+var Region = require('../../api/region/region.model');
 var async = require('async');
 var offset = 0;
 console.log("start !!!" );
@@ -28,11 +29,15 @@ console.log("start !!!" );
 module.exports = function() {
   var stream = fs.createReadStream(__dirname + "/../../config/data/test.csv");
   var csv = require("fast-csv");
+  var region = {};
   var district = {};
   var companies = [];
   var newCompanies = [];
   var csvStream = csv()
     .on("data", function (data) {
+      if (offset === 0) {
+        region = data[1];
+      }
 
       if (offset === 1) {
         district = data[1];
@@ -43,10 +48,17 @@ module.exports = function() {
       offset++;
     })
     .on("end", function () {
+
+
       var newDistrict = new District({name: district});
+      var newRegion = new Region({name: region});
+      newRegion.districts.push(newDistrict);
+      newDistrict.set({_region: newRegion});
+      console.log('newDistrict: ', newDistrict);
+      console.log('newRegion: ', newRegion);
       newDistrict.save(function (err, createdDistrict) {
         async.each(companies, function (company, callback) {
-          console.log('T Pushed company: ', company);
+    //      console.log('T Pushed company: ', company);
           var company = new Companies({
             name: company[0],
             holding: company[1],
@@ -55,18 +67,20 @@ module.exports = function() {
             _district: newDistrict._id
           });
           company.save(function (err, newCompany) {
-            console.log('NewCompany: ', newCompany);
+     //       console.log('NewCompany: ', newCompany);
             newCompanies.push(newCompany._id);
             callback();
           })
         }, function (err) {
           createdDistrict._companies = newCompanies;
-          console.log(newDistrict);
+    //      console.log(newDistrict);
           createdDistrict.save(function(err, district){
-            console.log('T Save: ', err, district);
+       //     console.log('T Save: ', err, district);
           });
         });
+        newRegion.save();
       });
+
     });
   stream.pipe(csvStream);
 };

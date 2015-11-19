@@ -1,24 +1,22 @@
 'use strict';
 
 angular.module('zpApp')
-  .controller('RegionViewCtrl', function ($scope, $http, $stateParams, $state) {
-    $scope.companys = [];
+  .controller('NewDistrictCtrl', function ($scope, $http, $stateParams, $state) {
     //console.log('Params: ', $stateParams.id);
-    $scope.company = {
+    $scope.district = {
       name: '',
-      info: '',
-      address: ''
+      info: ''
     };
-    $http.get('/api/region/'+$stateParams.id).success(function(region) {
-      $scope.region = region;
-    });
+
+    //$scope.district = $stateParams.districtID;
 
 
-
-    $scope.saveForm = function(region){
-    //  console.log(region);
-      $http.put('/api/region/'+region._id, region);
-      $state.go('region');
+    $scope.saveForm = function(district){
+      district._region = $state.params.regionID;
+      $http.post('/api/district/', district).then(function(response){
+        console.log(district);
+        $state.go('districtList', {regionID: district._region});
+      });
     };
 
     //$scope.addThing = function() {
