@@ -10,6 +10,8 @@ angular.module('zpApp')
       address: ''
     };
     $http.get('/api/company/view/'+$stateParams.id).success(function(company) {
+      company.color = "red";
+      console.log(company);
       $scope.company = company;
     });
 

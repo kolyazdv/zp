@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('zpApp')
-  .controller('NewCompanyCtrl', function ($scope, $http, $stateParams) {
+  .controller('NewCompanyCtrl', function ($scope, $http, $stateParams, $state) {
     //console.log('Params: ', $stateParams.id);
     $scope.company = {
       name: '',
@@ -14,8 +14,10 @@ angular.module('zpApp')
 
 
     $scope.saveForm = function(company){
-      console.log(company.color);
+      company._district = $state.params.districtID;
+      console.log(company);
       $http.post('/api/company/', company);
+      $state.go('companyList', {districtID: company._district});
     };
 
     //$scope.addThing = function() {

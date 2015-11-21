@@ -1,25 +1,25 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-
 <div class="container">
 
 
   <table class="table table-bordered table-striped table-hover">
     <tr>
-      <td>Name</td>
-      <td>Info</td>
+      <td>Дествие</td>
+      <td>Название предприятия</td>
       <td>Deal</td>
-      <td>Address</td>
+      <td>Info</td>
     </tr>
-    <tr ng-repeat="company in companies">
-      <td><a ui-sref="view({id: company._id})">{{company.name}}</a></td>
-      <td>{{company.info}}</td>
+    <tr ng-repeat="company in companies"  >
+      <td>
+        <a class="btn btn-primary btn-sm" ui-sref="companyList({companyID: company._id})">Просмотреть</a>
+        <button class="btn btn-danger btn-sm" ng-click="removeCompany(company)">Удалить</button>
+      </td>
+      <td><a ui-sref="companyView({id: company._id})">{{company.name}}</a></td>
       <td>{{company.deal}}</td>
-      <td>{{company.address}}</td>
+      <td>{{district.companiesCount}}</td>
     </tr>
   </table>
+  <!--<a class="btn btn-success" ui-sref="addDistrict({})">Добавить область</a>-->
+  <a class="btn btn-success" ui-sref="newCompany({districtID: districtID})">Добавить предприятие</a>
 </div>
-
-<footer class="footer">
-
-</footer>

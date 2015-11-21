@@ -46,7 +46,7 @@ angular.module('zpApp')
       $scope.newCompany = '';
     };
 
-    $scope.removeDistrict = function(district){
+    $scope.removeCompany = function(company){
       swal({
           title: "Точно удалить?",
           text: "Удаляем компанию и все данные которые входят в нее!",
